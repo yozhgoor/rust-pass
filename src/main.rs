@@ -46,3 +46,7 @@ fn ask_password() -> std::io::Result<String> {
 
     Ok(password)
 }
+
+fn make_hint(password: &str) -> String {
+    make_password(password, "foo")[0..6].to_string()
+}
