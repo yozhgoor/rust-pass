@@ -67,3 +67,7 @@ fn ask_site() -> std::io::Result<String> {
         Err(err) => Err(err),
     }
 }
+
+fn usage(cmd: &str) {
+    println!("usage: {} [<site>]", cmd);
+}
