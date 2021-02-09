@@ -20,7 +20,7 @@ fn make_password(password: &str, site: &str) -> String {
     let digest = sha1::Sha1::from(format!("_{}_{}_", password, site))
         .digest()
         .bytes();
-    let b64 = b64::encode(digest.as_ref());
+    let b64 = base64::encode(digest.as_ref());
 
     generate_password(&b64)
 }
