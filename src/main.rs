@@ -50,3 +50,20 @@ fn ask_password() -> std::io::Result<String> {
 fn make_hint(password: &str) -> String {
     make_password(password, "foo")[0..6].to_string()
 }
+
+fn ask_site() -> std::io::Result<String> {
+    use std::io::Write;
+
+    let mut stderr = std::io::stderr();
+    write!(stderr, "site: ")?;
+    stderr.flush()?;
+
+    let mut site = String::new();
+    match std::io::stdin().read_line(&mut site) {
+        Ok(_) => Ok(site
+            .chars()
+            .take_while(|x| x != &'\n' && x != &'\r')
+            .collect()),
+        Err(err) => Err(err),
+    }
+}
