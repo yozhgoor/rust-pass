@@ -38,3 +38,11 @@ fn generate_password(s: &str) -> String {
         s.get(4..26).unwrap(),
     )
 }
+
+fn ask_password() -> std::io::Result<String> {
+    let password = rpassword::prompt_password_stderr("Password: ")?;
+    eprintln!();
+    eprintln!("Hint: {}", make_hint(&password));
+
+    Ok(password)
+}
